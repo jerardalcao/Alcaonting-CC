@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}
+Transactions
+{% endblock %}
+{% block header %}
+Transactions
+{% endblock %}
+{% block content %}
+<section class="transactions">
+<table>
+    <th>Card</th>
+    <th>Date</th>
+    <th>Vendor</th>
+    <th>Particulars</th>
+    <th>Amount</th>
+    <th>Expenseby</th>
+    {% if page_num == 0 %}
+    {% for transaction in transactions %}
+    <tr>
+        <td>{% for cc in creditcards %}
+            {%if cc.id == transaction.cc_id%} 
+            {{cc.alias}}
+            {% endif%}{% endfor%} </td>
+        <td>{{transaction.date}}</td>
+        <td>{{transaction.vendor}}</td>
+        <td>{{transaction.particulars}}</td>
+        <td>{{financial(transaction.amount,grouping=True)}}</td>
+        <td>{% for user in users %}
+            {%if transaction.user_id == user.id%} 
+            {{user.name}}
+            {% endif%}
+        {% endfor%}
+        <td><a href="{{update_transaction('update_transaction',t_id=transaction.id)}}">Update</a></td>
+    </tr>
+    {% endfor %}
+{% endif %}
+    {% for transaction in transactions[prev_page:cur_page] %}
+    <tr>
+        <td>{% for cc in creditcards %}
+            {%if cc.id == transaction.cc_id%} 
+            {{cc.alias}}
+            {% endif%}{% endfor%} </td>
+        <td>{{transaction.date}}</td>
+        <td>{{transaction.vendor}}</td>
+        <td>{{transaction.particulars}}</td>
+        <td>{{financial(transaction.amount,grouping=True)}}</td>
+        <td>{% for user in users %}
+            {%if transaction.user_id == user.id%} 
+            {{user.name}}
+            {% endif%}{% endfor%} </td>
+            <td><a href="{{update_transaction('update_transaction',t_id=transaction.id)}}">Update</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% if page_num != 0 %}
+<a href="{{all}}">View All</a>
+{% endif %}
+
+<div class="pagination flex">
+
+{% if cur_page >= 20 %}
+<a href="{{prev}}">Previous</a>
+{% endif %}
+{% if len(transactions_all[prev_page:cur_page]) == 10 %}
+
+<a href="{{next}}">Next</a>
+{% endif %}
+</div>
+</section>
+{% endblock %}

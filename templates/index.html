@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+{% block header %}
+Home - Dashboard
+{% endblock %}
+{% block content %}
+<div class="totals"><span>Total Outstanding Balance: {{financial(total_balance(),grouping=True)}}</span></div>
+<section class="flex dashboard">
+        <div class="cards flex">
+            {% if len(creditcards) == 0%}
+            <div class="card flex"><span class="name"><a href="{{addcredit}}">Click here to add card</a></span>
+                <br><span class="balance">Outstanding Balance</span>
+                <br><span class="amount"> 0 </span>
+            </div>
+            {% endif %}
+
+            {% for cc in creditcards %}
+            <div class="card flex"><span class="name"><a href="transactions/cc/{{cc.id}}/1">{{cc.alias}}</a></span>
+                <br><span class="balance">Outstanding Balance</span>
+                <br><span class="amount"> {{financial(calc_balance("cc",cc.id),grouping=True)}} </span>
+            </div>{% endfor %}
+            </div>
+       <div class="users flex">
+            {% if len(users) == 0%}
+            <div class="user-table flex"><div class="card flex"><span class="name"><a href="{{adduser}}">Click here to add user</a></span>
+                <br>
+               <span class="balance">Outstanding Balance</span> 
+               <br>
+               <span class="amount">0</span>
+            <br></div>
+            {% endif %}
+           {% for user in users %}
+           <div class="user-table flex"><div class="card flex"><span class="name"><a href="transactions/user/{{user.id}}/1">{{user.name}}</a></span>
+            <br>
+           <span class="balance">Outstanding Balance</span> 
+           <br>
+           <span class="amount">{{financial(calc_balance("user",user.id),grouping=True)}}</span>
+        <br></div>
+        
+        <!-- <span>Recent transactions:</span> -->
+            <table>
+            <th>Card</th>
+            <th>Date</th>
+            <th>Vendor</th>
+            <th>Particulars</th>
+            <th>Amount</th>
+            {% for transaction in view_transactions(user.id,"desc")[0:5]%}
+            <tr>
+                <td>
+                    {% for cc in creditcards %}
+                    {%if cc.id == transaction.cc_id%} 
+                    {{cc.alias}}
+                    {% endif%}{% endfor%} </td>
+                <td>{{transaction.date}}</td>
+                <td>{{transaction.vendor}}</td>
+                <td>{{transaction.particulars}}</td>
+                <td>{{financial(transaction.amount,grouping=True)}}</td>
+            </tr>
+            {% endfor %}
+           
+        </table>
+    </div>
+        {% endfor %}
+      
+       </div>
+   
+       
+</section>
+{% endblock %}

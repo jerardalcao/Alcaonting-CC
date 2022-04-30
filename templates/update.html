@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}
+Update Transaction
+{% endblock %}
+{% block header %}
+Update Transaction
+{% endblock %}
+{% block content %}
+<section>
+    <form class="create" action="" method="post">
+    <div class="input flex"><span>CC Name: </span><select name="cardname" value="{{transaction.cc_id}}">
+                                       
+                                        {% for cc in creditcards %}
+                                        {% if transaction.cc_id == cc.id %}
+                                        <option value="{{cc.id}}" selected>{{cc.alias}}</option>
+                                             {%else%}
+                                        <option value="{{cc.id}}">{{cc.alias}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select></div>
+     <div class="input flex"> <span>Date: </span><input type="date" name="date" value="{{transaction.date}}"/></div>
+     <div class="input flex"><span>Vendor: </span><input type="text" name="vendor" value="{{transaction.vendor}}"/></div>
+     <div class="input flex"><span>Particulars: </span><textarea class="text"  name="particulars">{{transaction.particulars}}</textarea></div>
+     <div class="input flex"><span>Amount: </span><input type="number" name="amount" step="0.01" value="{{transaction.amount}}"/></div>
+     <div class="input flex"><span>Expense by: </span><select name="expenseby" value="{{transaction.user_id}}">
+        
+        {% for user in users %}
+        {% if transaction.user_id == user.id %}
+        <option value="{{user.id}}" selected>{{user.name}}</option>
+        {%else%}
+        <option value="{{user.id}}">{{user.name}}</option>
+        {%endif%}
+            {% endfor %}
+        </select></div>
+        <div class="input flex"><input type="submit" class="submit-btn" name="submit" id="update" value="UPDATE"/></div>
+        <div class="input flex"><input type="submit" class="submit-btn delete" name="submit" id="delete" value="DELETE"/></div>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+Process Import
+{% endblock %}
+{% block content %}
+    <section>
+        <form method="post" action="" class="update"></form>
+    <table>
+        <th>Card</th>
+        <th>Date</th>
+        <th>Vendor</th>
+        <th>Particulars</th>
+        <th>Amount</th>
+        <th>Expenseby</th>
+        
+        
+            {%for num,line in enumerate(csv_import)%}
+           
+        <tr>
+            
+            <td><select name="cardname{{num}}">
+                {% for cc in creditcards %}
+                <option value="{{cc.id}}">{{cc.alias}}</option>
+                {% endfor %}
+            </select></td>
+            <td><input type="date" name="date{{num}}" value="{{line['Date']}}"/></td>
+            <td><input type="text" name="vendor{{num}}" value="{{line['Vendor']}}"/></td>
+            <td><input type="text" name="particulars{{num}}" /></td>
+            <td><input type="number" name="amount{{num}}" step="0.01" value="{{line['Amount']}}"/></td>
+            <td><select name="expenseby{{num}}">
+                {% for user in users %}
+                <option value="{{user.id}}">{{user.name}}</option>
+                {% endfor %}
+                </select></td>
+                
+        </tr>
+        {% endfor %}
+    </table>
+        <input type="submit" value="import"/>
+    </form>
+       
+
+
+   
+</section>
+{% endblock %}

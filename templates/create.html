@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Create Transaction
+{% endblock %}
+{% block header %}
+Create Transaction
+{% endblock %}
+{% block content %}
+<section>
+    <form class="create" action="" method="post">
+        <div class="input flex"><span>CC Name: </span><select name="cardname">
+                                        <!-- <option value="" ></option> -->
+                                        {% for cc in creditcards %}
+                                        <option value="{{cc.id}}">{{cc.alias}}</option>
+                                        {% endfor %}
+                                    </select></div>
+     <div class="input flex"> <span>Date: </span><input type="date" name="date" value="{{datetoday}}"/></div>
+     <div class="input flex"><span>Vendor: </span><input type="text" name="vendor"/></div>
+     <div class="input flex"><span>Particulars: </span><textarea class="text"  name="particulars"></textarea></div>
+     <div class="input flex"><span>Amount: </span><input type="number" name="amount" step="0.01"/></div>
+     <div class="input flex"><span>Expense by: </span><select name="expenseby">
+           {% for user in users %}
+        <option value="{{user.id}}">{{user.name}}</option>
+            {% endfor %}
+        </select></div>
+        <div class="input flex"><input type="submit" class="submit-btn" name="create" value="CREATE"/></div>
+    </form>
+</section>
+{% endblock %}

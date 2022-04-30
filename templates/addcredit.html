@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+Add Credit
+{% endblock %}
+{% block content %}
+<section>
+    <form class="create" action="" method="post">
+        <div class="input flex"><span>Credit Card Number: </span><input type="number" name="number" /></div>
+       <div class="input flex"><span>Bank: </span><input type="text" name="bank" /></div>
+       <div class="input flex"><span>Alias: </span><input type="text" name="alias" /></div>
+       <div class="input flex"><span>Type: </span><input type="text" name="type" /></div>
+       <div class="input flex"><input type="submit" name="create" value="CREATE" class="submit-btn"/></div>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,225 @@
+@import url(inter/inter.css);
+
+:root{
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    --primary-blue:#175DDC;
+    --secondary-medium-blue: #1252A3;
+    --secondary-dark-blue:#1A3B66;
+    --accent-green:#26FF75;
+    --box-shadow:0px 16px 24px 2px rgba(0,0,0,0.14) , 0px 6px 30px 5px rgba(0,0,0,0.12) , 0px 8px 10px -7px rgba(0,0,0,0.2) ;
+}
+
+
+
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+html, body {
+    height:100%;
+    width:100%;
+    background-color: ghostwhite;
+
+}
+section {
+    padding:5% 25% 0;
+    background-color: ghostwhite;
+}
+header {
+    text-align:center;
+}
+div {
+    padding:2%;
+}
+a {
+    text-decoration: none;
+}
+input, select {
+    width:100%;
+    height:2rem;
+    background-color: transparent;
+    border-radius: 4px;
+    border: solid black 1px;
+}
+select {
+    background-color:whitesmoke;
+    border:none;
+   
+}
+.text {
+    height:4rem;
+    outline:none;
+    width:100%;
+}
+.flex {
+    display:flex;
+    flex-direction: column;
+}
+.hide {
+    display:none;
+}
+.input {
+    flex-direction: row;
+}
+.input span{
+    display: block;
+    width:30%;
+}
+.submit-btn {
+    background-color: var(--primary-blue);
+    color:white;
+    font-weight:600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+.delete {
+    background-color: red;
+    color:white;
+}
+.navbar{
+    height:5vh;
+    flex-direction: row;
+    background-color: var(--secondary-dark-blue);
+    color:white;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar-button {
+    z-index: 1;
+    position: absolute;
+    top:1vh;
+    left:1vw;
+    height:3vh;
+    aspect-ratio: 1;
+    border:none;
+    background-color: transparent;
+    background-position: center;
+    background-size: contain;
+    background-image: url('/static/icons/x.svg');
+    cursor:pointer;
+}
+.icon {
+    background-image: url('/static/icons/list.svg');
+
+}
+.sidebar {
+    position: absolute;
+    left:0;
+    top:0;
+    height:100%;
+    background-color: var(--secondary-dark-blue);
+    color:white;
+    width:15vw;
+}
+.sidebar a {
+    color:white;
+    font-size:1.25rem;
+}
+.dropdown {
+    cursor: pointer;
+    font-size:1.25rem;
+}
+.totals {
+    text-align: center;
+    align-items: center;
+}
+
+.cards {
+    width:100%;
+    flex-direction: row;
+    gap:1em;
+    flex-wrap: wrap;
+
+}
+.card {
+    border: none;
+    border-radius: 12px;
+    background: var(--secondary-medium-blue);
+    box-shadow: var(--box-shadow);
+    flex:1;
+    color:white;
+}
+.card a {
+    text-decoration: none;
+    color:white;
+}
+.name {
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 1em 0 0 1em;
+}
+.balance {
+    margin-top: 1em;
+    font-weight: 200;
+    font-size: .75em;
+    text-align: end;
+}
+.amount {
+    font-family: 'Fira Code';
+    text-align: end;
+}
+.users {
+    width:100%;
+    display:flex;
+    flex-direction: column;
+}
+.user-table {
+    gap:3rem;
+}
+table {
+    max-width: 100%;
+    border:none;
+    font-size: clamp(.75rem,1vw,1rem)
+}
+th, td{
+    padding:0.5em;
+    border:none;
+}
+th {
+    background-color: #eeeeee;
+}
+.create {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding:10% 20%;
+    box-shadow: var(--box-shadow);
+    background-color:white;
+
+}
+.pagination {
+    flex-direction: row;
+    justify-content: space-between;
+}
+.pagination a {
+    display:block;
+    height:2rem;
+    width:fit-content;
+    background-color: var(--primary-blue);
+    color:white;
+    border-bottom: solid 1px black;
+    padding:.5em;
+}
+
+@media screen and (max-width: 720px) {
+    :root{
+        font-size: 12px;
+    }
+    section{
+        padding: 2% 5%;
+    }
+    .sidebar{
+        width:15vh;
+        top:5vh;
+    }
+	.card { 
+	min-width:40%;
+
+	}
+	.create {
+	padding: 2% 5%;
+}
+}

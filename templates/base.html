@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<header>
+<nav class="navbar flex"><button class="sidebar-button icon"></button><h1>ALCA0NTING</h1></nav>
+<aside>
+    <div class="sidebar flex hide">
+        <div><a href="{{home}}">Home</a></div>
+        <div class="dropdown">Transactions -> </div>
+        <div class="dropdown-list flex hide">
+        <div><a href="{{transactions_all}}">View All</a></div>
+        <div><a href="{{create}}">Create</a></div>
+        <div><a href="{{import_transactions}}">Import</a></div> 
+        </div>
+        <div><a href="{{setup}}">Setup</a></div>
+    </div>
+</aside>
+<div><h3>{% block header %}{% endblock %}</h3></div>
+</header>
+<body>
+    {% block content %}{% endblock %}    
+</body>
+</html>

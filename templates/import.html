@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+Import Transaction
+{% endblock %}
+{% block header %}
+Import Transaction
+{% endblock %}
+{% block content %}
+<section>
+    <form class="import" action="" method="post" enctype="multipart/form-data">
+        <div class="input flex">File upload: <input type="file" name="import"/></div>
+        <input type="submit" value="IMPORT" class="submit-btn"/>
+    </form>
+    {{process_import}}
+</section>    
+{% endblock %}
